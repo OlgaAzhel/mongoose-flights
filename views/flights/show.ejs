@@ -1,0 +1,68 @@
+<%- include('../partials/header') %>
+
+        <table>
+        <thead>
+            <tr>
+                <th>Flight</th>
+                <th>Airline</th>
+                <th>Departure Airport</th>
+                <th>Departure date/time:</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <%= flight.flightNo %>
+                </td>
+                <td>
+                    <%= flight.airline %>
+                </td>
+                <td>
+                    <%= flight.airport %>
+                </td>
+                <td>
+                    <%= flight.departs %>
+                </td>
+            </tr>
+        </tbody>
+        </table>
+    <br>
+    <h3>Destinations:</h3>
+    <form id="add-destination-form" method="POST" action="/flights/<%= flight._id %>/destinations">
+        <label>Arrival airport:</label>
+        <select name="airport">
+            <option value="AUS">Austin</option>
+            <option value="DFW">Dallas</option>
+            <option value="DEN" selected>Denver</option>
+            <option value="LAX">LA</option>
+            <option value="SAN">SF</option>
+        </select>
+        <label>Arrival date and time:
+            <input type="datetime-local" name="arrival">
+        </label><br>
+        <input type="submit" value="Add Destination">
+    </form>
+    <% if (flight.destinations.length) { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Destination airport</th>
+                    <th>Arrival date and time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% flight.destinations.forEach(function(d) { %>
+                    <tr>
+                        <td>
+                            <%= d.airport %>
+                        </td>
+                        <td>
+                            <%= d.arrival %>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+        <% } else { %>
+            <h5>No arrivals added</h5>
+            <% } %>

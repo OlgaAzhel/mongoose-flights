@@ -1,0 +1,48 @@
+<%- include('../partials/header')%>
+    <h2>Flight List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Airline</th>
+                <th>Airport</th>
+                <th>flightNo</th>
+                <th>Departs</th>
+                <th>Additional info</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Write the line of EJS to iterate over movies using forEach -->
+            <% sortedFlights.forEach(function(f) {%>
+                <tr>
+                    <td>
+                        <%= f.airline %>
+                    </td>
+                    <td>
+                        <%= f.airport %>
+                    </td>
+                    <td>
+                        <%= f.flightNo %>
+                    </td>
+                    <% let d = new Date() %>
+                    <% let time = d.getTime() %>
+                    <% let flightTime = f.departs.getTime() %>
+                    <% if (flightTime < time) {%>
+                        <td style="color:red;">
+                         <%= f.departs %>
+                        </td>
+                        <% }else { %>                       
+                        <td>
+                        <%= f.departs %>
+                        </td>
+                        <% }%>
+                        <td>
+                            <a href="/flights/<%= f.id %>/">Details</a>
+                        </td>
+                </tr>
+                <!-- Close the forEach using EJS here -->
+                <% })%>
+        </tbody>
+    </table>
+
+
+    <%- include('../partials/footer')%>
