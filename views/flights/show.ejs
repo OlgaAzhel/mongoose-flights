@@ -29,7 +29,7 @@
     <br>
     <h3>Destinations:</h3>
     <form id="add-destination-form" method="POST" action="/flights/<%= flight._id %>/destinations">
-        <label>Arrival airport:</label>
+        <label>Arrival airport:
         <select name="airport">
             <option value="AUS">Austin</option>
             <option value="DFW">Dallas</option>
@@ -37,10 +37,11 @@
             <option value="LAX">LA</option>
             <option value="SAN">SF</option>
         </select>
+        </label><br>
         <label>Arrival date and time:
             <input type="datetime-local" name="arrival">
         </label><br>
-        <input type="submit" value="Add Destination">
+        <button type="submit">Add Destination</button><br>
     </form>
     <% if (flight.destinations.length) { %>
         <table>
