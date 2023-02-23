@@ -48,6 +48,16 @@
 
         </tbody>
     </table>
+    <h3>Tickets:</h3>
+    <form action="/flights/<%= flight._id%>/tickets" method="POST">
+        <label>Seat number:
+            <input name="seat" required pattern="[A-F][1-9]\d?">
+        </label><br>
+        <label>Price:
+            <input name="price" type="number">
+        </label><br>
+        <button type="submit">Add ticket</button>
+    </form>
     <br>
     <h3>Destinations:</h3>
     <form id="add-destination-form" method="POST" action="/flights/<%= flight._id %>/destinations">
@@ -89,14 +99,5 @@
         <% } else { %>
             <h5>No arrivals added</h5>
             <% } %>
-                <h3>Tickets:</h3>
-                <form action="/flights/<%= flight._id%>/tickets" method="POST">
-                    <label>Seat number:
-                        <input name="seat" required pattern="[A-F][1-9]\d?">
-                    </label>
-                    <label>Price:
-                        <input name="price" type="number">
-                    </label>
-                    <button type="submit">Add ticket</button>
-                </form>
+                
                 <%- include('../partials/footer') %>
