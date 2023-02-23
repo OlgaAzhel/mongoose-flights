@@ -1,12 +1,13 @@
 <%- include('../partials/header') %>
 
-        <table>
+    <table>
         <thead>
             <tr>
                 <th>Flight</th>
                 <th>Airline</th>
                 <th>Departure Airport</th>
                 <th>Departure date/time:</th>
+                <th>Tickets</th>
             </tr>
         </thead>
         <tbody>
@@ -23,20 +24,23 @@
                 <td>
                     <%= flight.departs %>
                 </td>
+                <td>
+                    <%= flight.tickets %>
+                </td>
             </tr>
         </tbody>
-        </table>
+    </table>
     <br>
     <h3>Destinations:</h3>
     <form id="add-destination-form" method="POST" action="/flights/<%= flight._id %>/destinations">
         <label>Arrival airport:
-        <select name="airport">
-            <option value="AUS">Austin</option>
-            <option value="DFW">Dallas</option>
-            <option value="DEN" selected>Denver</option>
-            <option value="LAX">LA</option>
-            <option value="SAN">SF</option>
-        </select>
+            <select name="airport">
+                <option value="AUS">Austin</option>
+                <option value="DFW">Dallas</option>
+                <option value="DEN" selected>Denver</option>
+                <option value="LAX">LA</option>
+                <option value="SAN">SF</option>
+            </select>
         </label><br>
         <label>Arrival date and time:
             <input type="datetime-local" name="arrival">
@@ -67,3 +71,9 @@
         <% } else { %>
             <h5>No arrivals added</h5>
             <% } %>
+    <h3>Tickets:</h3>
+    <form action="/flights/<%= flight._id%>/tickets" method="POST">
+    <input name="seat" required pattern="[A-F][1-9]\d?">
+    <button type="submit">Add ticket</button>
+    </form>
+<%- include('../partials/footer') %>
